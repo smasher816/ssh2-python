@@ -1,0 +1,7 @@
+conda:
+  file: doc/environment.yml
+formats:
+  - epub
+  - pdf
+python:
+  pip_install: true

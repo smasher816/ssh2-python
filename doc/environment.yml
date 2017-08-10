@@ -1,0 +1,4 @@
+name: doc
+dependencies:
+  - libssh2
+  - gcc
