@@ -1,0 +1,85 @@
+environment:
+  global:
+    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+    # /E:ON and /V:ON options are not enabled in the batch script intepreter
+    # See: http://stackoverflow.com/a/13751649/163740
+    CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\appveyor\\run_with_env.cmd"
+
+  matrix:
+
+    # Pre-installed Python versions, which Appveyor may upgrade to
+    # a later point release.
+
+    - PYTHON: "C:\\Python34-x64"
+      PYTHON_VERSION: "3.4.x" # currently 3.4.3
+      PYTHON_ARCH: "64"
+      PYTHON_EXE: python
+
+    - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x" # currently 2.7.11
+      PYTHON_ARCH: "64"
+      PYTHON_EXE: python
+
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.x" # currently 3.5.1
+      PYTHON_ARCH: "64"
+      PYTHON_EXE: python
+
+    # - PYTHON: "C:\\Python35"
+    #   PYTHON_VERSION: "3.5.x" # currently 3.5.0
+    #   PYTHON_ARCH: "32"
+    #   PYTHON_EXE: python
+
+    # - PYTHON: "C:\\Python27"
+    #   PYTHON_VERSION: "2.7.x" # currently 2.7.11
+    #   PYTHON_ARCH: "32"
+    #   PYTHON_EXE: python
+
+    # - PYTHON: "C:\\Python34"
+    #   PYTHON_VERSION: "3.4.x" # currently 3.4.3
+    #   PYTHON_ARCH: "32"
+    #   PYTHON_EXE: python
+
+install:
+  # this installs the appropriate Miniconda (Py2/Py3, 32/64 bit),
+  # as well as pip, conda-build, and the binstar CLI
+  - powershell .\\continuous-integration\\appveyor\\install.ps1
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
+cache:
+  - "%TMP%\\py\\"
+
+build_script:
+  # Build wheel
+  - "%PYEXE% setup.py install"
+  # - ps: "ls dist"
+  # # Now install the wheel.
+  # # I couldn't get wildcards to work for pip install, so stuff it
+  # # into a variable, using python to glob.
+  # - "%PYEXE% -c \"import glob; print(glob.glob('dist/*whl')[0])\" > whl.txt"
+  # - set /p PYWHL=<whl.txt
+  # - pip install %PYWHL%
+
+test_script:
+  - "%CMD_IN_ENV% conda build conda-recipe"
+  - python continuous-integration\move-conda-package.py conda-recipe
+  # Run the project tests
+  # - "%PYEXE% setup.py nosetests"
+  # - "%PYEXE% -c 'import sys; sys.version_info >= (3,) and sys.exit(1)' || eval \"2to3 -nw embedded_server\\*.py && 2to3 tests\\*.py -o tests3 -nw && cp tests\\test_client_private_key* tests3\\ && %PYEXE% setup.py nosetests -w tests3\\""
+
+# after_test:
+#   # We already built the wheel during build_script, because it's
+#   # much faster to do that and install from the wheel than to
+#   # rebuild it here (because we wind up re-building all the cython
+#   # code, even though it's already built on disk; our make.cmd is not smart)
+#   #- "%CMD_IN_ENV% %PYEXE% setup.py bdist_wheel bdist_wininst"
+#   - ps: "ls dist"
+#   - ps: "python -c 'import ssh2.session'"
+
+artifacts:
+  # Archive the generated wheel package in the ci.appveyor.com build report.
+  - path: '*.tar.bz2'
+
+#on_success:
+#  - TODO: upload the content of dist/*.whl to a public wheelhouse
+#
