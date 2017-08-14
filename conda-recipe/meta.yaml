@@ -20,6 +20,8 @@ build:
   # skip: true  # [win]
   number: 0
   script:
+    - set DISTUTILS_USE_SDK=1  # [win]
+    - setenv /x64 /release  # [win]
     - python setup.py install --single-version-externally-managed --record record.txt  # [unix]
     - python setup.py build_ext --single-version-externally-managed --record record.txt --compiler=msvc  # [win]
     - python setup.py install --single-version-externally-managed --record record.txt  # [win]
