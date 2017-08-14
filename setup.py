@@ -25,7 +25,7 @@ ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
 _libs = ['ssh2']
 # _comp_args = ["-ggdb"]
-_comp_args = ["-O3"]
+_comp_args = ["-O3"] if platform.system == 'Linux' else None
 _embedded_lib = bool(os.environ.get('EMBEDDED_LIB'))
 cython_directives = {'embedsignature': True,
                      'boundscheck': False,
