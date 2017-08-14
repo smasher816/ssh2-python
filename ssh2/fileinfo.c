@@ -469,7 +469,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 
 #define __PYX_HAVE__ssh2__fileinfo
 #define __PYX_HAVE_API__ssh2__fileinfo
-#include <stdint.h>
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
@@ -800,8 +799,6 @@ static int __Pyx_check_binary_version(void);
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-
-/* Module declarations from 'libc.stdint' */
 
 /* Module declarations from 'libc.stddef' */
 

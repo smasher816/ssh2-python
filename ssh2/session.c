@@ -469,7 +469,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 
 #define __PYX_HAVE__ssh2__session
 #define __PYX_HAVE_API__ssh2__session
-#include <stdint.h>
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
@@ -479,6 +478,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <string.h>
 #include <stdio.h>
 #include "pythread.h"
+#include <stdint.h>
 #include "libssh2_sftp.h"
 #include "libssh2_publickey.h"
 #ifdef _OPENMP
@@ -1177,8 +1177,6 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 static LIBSSH2_AGENT *__pyx_f_4ssh2_7session_7Session__agent_init(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self); /* proto*/
 static LIBSSH2_AGENT *__pyx_f_4ssh2_7session_7Session_init_connect_agent(struct __pyx_obj_4ssh2_7session_Session *__pyx_v_self); /* proto*/
 
-/* Module declarations from 'libc.stdint' */
-
 /* Module declarations from 'libc.stddef' */
 
 /* Module declarations from 'libc.time' */
@@ -1271,6 +1269,8 @@ static PyTypeObject *__pyx_ptype_7cpython_7complex_complex = 0;
 /* Module declarations from 'cpython.pycapsule' */
 
 /* Module declarations from 'cpython' */
+
+/* Module declarations from 'libc.stdint' */
 
 /* Module declarations from 'ssh2.agent' */
 static PyTypeObject *__pyx_ptype_4ssh2_5agent_Agent = 0;

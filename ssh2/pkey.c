@@ -469,7 +469,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 
 #define __PYX_HAVE__ssh2__pkey
 #define __PYX_HAVE_API__ssh2__pkey
-#include <stdint.h>
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
@@ -865,8 +864,6 @@ static int __Pyx_ExportFunction(const char *name, void (*f)(void), const char *s
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-
-/* Module declarations from 'libc.stdint' */
 
 /* Module declarations from 'libc.stddef' */
 

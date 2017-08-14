@@ -469,7 +469,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 
 #define __PYX_HAVE__ssh2__sftp_handle
 #define __PYX_HAVE_API__ssh2__sftp_handle
-#include <stdint.h>
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
@@ -477,6 +476,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <unistd.h>
 #include "libssh2.h"
 #include "libssh2_sftp.h"
+#include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
 #ifdef _OPENMP
@@ -1074,10 +1074,13 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_long(unsigned long value);
 
 /* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uint64_t(uint64_t value);
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_libssh2_uint64_t(libssh2_uint64_t value);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
+
+/* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uint64_t(uint64_t value);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE unsigned long __Pyx_PyInt_As_unsigned_long(PyObject *);
@@ -1171,8 +1174,6 @@ static PyTypeObject *__Pyx_ImportType(const char *module_name, const char *class
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'libc.stdint' */
-
 /* Module declarations from 'libc.stddef' */
 
 /* Module declarations from 'libc.time' */
@@ -1190,6 +1191,8 @@ static PyTypeObject *__pyx_ptype_4ssh2_7session_Session = 0;
 
 /* Module declarations from 'ssh2.sftp' */
 static PyTypeObject *__pyx_ptype_4ssh2_4sftp_SFTP = 0;
+
+/* Module declarations from 'libc.stdint' */
 
 /* Module declarations from 'libc.string' */
 
@@ -1867,7 +1870,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_14SFTPAttributes_8filesize___get__
  *     @filesize.setter
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_attrs->filesize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_attrs->filesize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7274,7 +7277,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_7f_bsize___get__(str
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_bsize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_bsize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7334,7 +7337,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_8f_frsize___get__(st
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_frsize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_frsize); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7394,7 +7397,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_8f_blocks___get__(st
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 421, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7454,7 +7457,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_7f_bfree___get__(str
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_bfree); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 426, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_bfree); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7514,7 +7517,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_8f_bavail___get__(st
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_bavail); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 431, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_bavail); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 431, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7574,7 +7577,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_7f_files___get__(str
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_files); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_files); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7634,7 +7637,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_7f_ffree___get__(str
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_ffree); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_ffree); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 441, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7694,7 +7697,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_8f_favail___get__(st
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_favail); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_favail); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7754,7 +7757,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_6f_fsid___get__(stru
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_fsid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 451, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_fsid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 451, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7814,7 +7817,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_6f_flag___get__(stru
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_flag); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_flag); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7872,7 +7875,7 @@ static PyObject *__pyx_pf_4ssh2_11sftp_handle_11SFTPStatVFS_9f_namemax___get__(s
  *         return self._ptr.f_namemax             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_self->_ptr->f_namemax); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 464, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_ptr->f_namemax); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 464, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10281,24 +10284,24 @@ bad:
 }
 
 /* CIntToPy */
-      static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uint64_t(uint64_t value) {
-    const uint64_t neg_one = (uint64_t) -1, const_zero = (uint64_t) 0;
+      static CYTHON_INLINE PyObject* __Pyx_PyInt_From_libssh2_uint64_t(libssh2_uint64_t value) {
+    const libssh2_uint64_t neg_one = (libssh2_uint64_t) -1, const_zero = (libssh2_uint64_t) 0;
     const int is_unsigned = neg_one > const_zero;
     if (is_unsigned) {
-        if (sizeof(uint64_t) < sizeof(long)) {
+        if (sizeof(libssh2_uint64_t) < sizeof(long)) {
             return PyInt_FromLong((long) value);
-        } else if (sizeof(uint64_t) <= sizeof(unsigned long)) {
+        } else if (sizeof(libssh2_uint64_t) <= sizeof(unsigned long)) {
             return PyLong_FromUnsignedLong((unsigned long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(uint64_t) <= sizeof(unsigned PY_LONG_LONG)) {
+        } else if (sizeof(libssh2_uint64_t) <= sizeof(unsigned PY_LONG_LONG)) {
             return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
 #endif
         }
     } else {
-        if (sizeof(uint64_t) <= sizeof(long)) {
+        if (sizeof(libssh2_uint64_t) <= sizeof(long)) {
             return PyInt_FromLong((long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(uint64_t) <= sizeof(PY_LONG_LONG)) {
+        } else if (sizeof(libssh2_uint64_t) <= sizeof(PY_LONG_LONG)) {
             return PyLong_FromLongLong((PY_LONG_LONG) value);
 #endif
         }
@@ -10306,7 +10309,7 @@ bad:
     {
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(uint64_t),
+        return _PyLong_FromByteArray(bytes, sizeof(libssh2_uint64_t),
                                      little, !is_unsigned);
     }
 }
@@ -10338,6 +10341,37 @@ bad:
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
         return _PyLong_FromByteArray(bytes, sizeof(int),
+                                     little, !is_unsigned);
+    }
+}
+
+/* CIntToPy */
+      static CYTHON_INLINE PyObject* __Pyx_PyInt_From_uint64_t(uint64_t value) {
+    const uint64_t neg_one = (uint64_t) -1, const_zero = (uint64_t) 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(uint64_t) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(uint64_t) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(uint64_t) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(uint64_t) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(uint64_t) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(uint64_t),
                                      little, !is_unsigned);
     }
 }
