@@ -9,21 +9,23 @@ environment:
 
     # Pre-installed Python versions, which Appveyor may upgrade to
     # a later point release.
-
-    - PYTHON: "C:\\Python34-x64"
-      PYTHON_VERSION: "3.4.x" # currently 3.4.3
+    - PYTHON: "C:\\Python27_64"
+      PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "64"
-      PYTHON_EXE: python
+      CONDA_PY: "27"
+      CONDA_NPY: "18"
 
-    - PYTHON: "C:\\Python27-x64"
-      PYTHON_VERSION: "2.7.x" # currently 2.7.11
-      PYTHON_ARCH: "64"
-      PYTHON_EXE: python
+    - PYTHON: "C:\\Python34_32"
+      PYTHON_VERSION: "3.4"
+      PYTHON_ARCH: "32"
+      CONDA_PY: "34"
+      CONDA_NPY: "18"
 
     - PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5.x" # currently 3.5.1
       PYTHON_ARCH: "64"
-      PYTHON_EXE: python
+      CONDA_PY: "35"
+      CONDA_NPY: "18"
 
     # - PYTHON: "C:\\Python35"
     #   PYTHON_VERSION: "3.5.x" # currently 3.5.0
@@ -48,6 +50,7 @@ install:
 
 cache:
   - "%TMP%\\py\\"
+
 build: false
 # build_script:
   # Build wheel
