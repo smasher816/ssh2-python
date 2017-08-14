@@ -38,8 +38,9 @@ cython_args = {
     'cython_compile_time_env': {'EMBEDDED_LIB': _embedded_lib}} \
     if USING_CYTHON else {}
 
+source_prefix = '_'if platform.system() == 'Windows' else ''
 extensions = [
-    Extension(sources[i].split('.')[0].replace('/', '.'),
+    Extension(source_prefix + sources[i].split('.')[0].replace('/', '.'),
               sources=[sources[i]],
               include_dirs=["libssh2/include"],
               libraries=_libs,
