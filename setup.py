@@ -40,7 +40,10 @@ cython_args = {
 extensions = [
     Extension(sources[i].split('.')[0].replace('/', '.'),
               sources=[sources[i]],
+              include_dirs=["libssh2/include"],
               libraries=_libs,
+              library_dirs=["src/src"],
+              runtime_library_dirs=["$ORIGIN/_libssh2"],
               extra_compile_args=_comp_args,
               **cython_args
               # For conditional compilation
