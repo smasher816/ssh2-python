@@ -1,6 +1,6 @@
-from posix.stat cimport struct_stat
+from c_ssh2 cimport libssh2_struct_stat
 
 
 cdef class StatInfo:
     """Representation of stat structure - older version"""
-    cdef struct_stat* _stat
+    cdef libssh2_struct_stat* _stat
