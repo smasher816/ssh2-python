@@ -1,15 +1,16 @@
 {% set name = "ssh2-python" %}
-{% set version = "0.5.1" %}
-{% set sha256 = "e5e77801a7a0d49799e288ecbd189b4d1c23eeadcf9c6f4ce80b31b7d397babe" %}
+{% set version = GIT_DESCRIBE_TAG %}
+# {% set sha256 = "e5e77801a7a0d49799e288ecbd189b4d1c23eeadcf9c6f4ce80b31b7d397babe" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  path: ../
+  # fn: {{ name }}-{{ version }}.tar.gz
+  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  # sha256: {{ sha256 }}
 
 build:
   features:
