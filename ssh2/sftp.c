@@ -472,6 +472,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include "libssh2.h"
 #include "libssh2_sftp.h"
 #include <string.h>
@@ -1196,6 +1197,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'libc.time' */
 
 /* Module declarations from 'posix.types' */
+
+/* Module declarations from 'ssh2.c_stat' */
 
 /* Module declarations from 'ssh2.c_ssh2' */
 

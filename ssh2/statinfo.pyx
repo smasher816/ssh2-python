@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 from libc.stdlib cimport malloc, free
-from c_ssh2 cimport libssh2_struct_stat
+from c_stat cimport struct_stat
 
 
 cdef class StatInfo:
@@ -23,8 +23,8 @@ cdef class StatInfo:
 
     def __cinit__(self):
         with nogil:
-            self._stat = <libssh2_struct_stat *>malloc(
-                sizeof(libssh2_struct_stat))
+            self._stat = <struct_stat *>malloc(
+                sizeof(struct_stat))
             if self._stat is NULL:
                 with gil:
                     raise MemoryError

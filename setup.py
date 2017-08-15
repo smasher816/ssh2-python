@@ -23,10 +23,11 @@ else:
 
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
-_libs = ['ssh2'] if platform.system() != 'Windows' else ['libssh2']
-print("Linking with library %s" % (_libs[0]))
+_libs = ['ssh2'] if platform.system() != 'Windows' else [
+    'libeay32', 'ssleay32', 'Ws2_32', 'libssh2']
+
 # _comp_args = ["-ggdb"]
-_comp_args = ["-O3"] if platform.system == 'Linux' else None
+_comp_args = ["-O3"] if platform.system != 'Windows' else None
 _embedded_lib = bool(os.environ.get('EMBEDDED_LIB'))
 cython_directives = {'embedsignature': True,
                      'boundscheck': False,

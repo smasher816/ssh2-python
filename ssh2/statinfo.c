@@ -472,7 +472,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
-#include "libssh2.h"
+#include <sys/stat.h>
 #include <string.h>
 #include <stdlib.h>
 #ifdef _OPENMP
@@ -682,16 +682,16 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_4ssh2_8statinfo_StatInfo;
 
-/* "ssh2/statinfo.pxd":4
+/* "ssh2/statinfo.pxd":20
  * 
  * 
  * cdef class StatInfo:             # <<<<<<<<<<<<<<
  *     """Representation of stat structure - older version"""
- *     cdef libssh2_struct_stat* _stat
+ *     cdef struct_stat* _stat
  */
 struct __pyx_obj_4ssh2_8statinfo_StatInfo {
   PyObject_HEAD
-  libssh2_struct_stat *_stat;
+  struct stat *_stat;
 };
 
 
@@ -860,7 +860,7 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_ino_t(ino_t value);
 
 /* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_long(unsigned long value);
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_mode_t(mode_t value);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_nlink_t(nlink_t value);
@@ -875,7 +875,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_gid_t(gid_t value);
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_dev_t(dev_t value);
 
 /* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_libssh2_uint64_t(libssh2_uint64_t value);
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_off_t(off_t value);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_blksize_t(blksize_t value);
@@ -908,7 +908,7 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* Module declarations from 'posix.types' */
 
-/* Module declarations from 'ssh2.c_ssh2' */
+/* Module declarations from 'ssh2.c_stat' */
 
 /* Module declarations from 'libc.string' */
 
@@ -963,7 +963,7 @@ static PyObject *__pyx_tuple__2;
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         with nogil:
- *             self._stat = <libssh2_struct_stat *>malloc(
+ *             self._stat = <struct_stat *>malloc(
  */
 
 /* Python wrapper */
@@ -992,8 +992,8 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
  * 
  *     def __cinit__(self):
  *         with nogil:             # <<<<<<<<<<<<<<
- *             self._stat = <libssh2_struct_stat *>malloc(
- *                 sizeof(libssh2_struct_stat))
+ *             self._stat = <struct_stat *>malloc(
+ *                 sizeof(struct_stat))
  */
   {
       #ifdef WITH_THREAD
@@ -1006,15 +1006,15 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
         /* "ssh2/statinfo.pyx":26
  *     def __cinit__(self):
  *         with nogil:
- *             self._stat = <libssh2_struct_stat *>malloc(             # <<<<<<<<<<<<<<
- *                 sizeof(libssh2_struct_stat))
+ *             self._stat = <struct_stat *>malloc(             # <<<<<<<<<<<<<<
+ *                 sizeof(struct_stat))
  *             if self._stat is NULL:
  */
-        __pyx_v_self->_stat = ((libssh2_struct_stat *)malloc((sizeof(libssh2_struct_stat))));
+        __pyx_v_self->_stat = ((struct stat *)malloc((sizeof(struct stat))));
 
         /* "ssh2/statinfo.pyx":28
- *             self._stat = <libssh2_struct_stat *>malloc(
- *                 sizeof(libssh2_struct_stat))
+ *             self._stat = <struct_stat *>malloc(
+ *                 sizeof(struct_stat))
  *             if self._stat is NULL:             # <<<<<<<<<<<<<<
  *                 with gil:
  *                     raise MemoryError
@@ -1023,7 +1023,7 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
         if (__pyx_t_1) {
 
           /* "ssh2/statinfo.pyx":29
- *                 sizeof(libssh2_struct_stat))
+ *                 sizeof(struct_stat))
  *             if self._stat is NULL:
  *                 with gil:             # <<<<<<<<<<<<<<
  *                     raise MemoryError
@@ -1046,7 +1046,7 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
               }
 
               /* "ssh2/statinfo.pyx":29
- *                 sizeof(libssh2_struct_stat))
+ *                 sizeof(struct_stat))
  *             if self._stat is NULL:
  *                 with gil:             # <<<<<<<<<<<<<<
  *                     raise MemoryError
@@ -1063,8 +1063,8 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
           }
 
           /* "ssh2/statinfo.pyx":28
- *             self._stat = <libssh2_struct_stat *>malloc(
- *                 sizeof(libssh2_struct_stat))
+ *             self._stat = <struct_stat *>malloc(
+ *                 sizeof(struct_stat))
  *             if self._stat is NULL:             # <<<<<<<<<<<<<<
  *                 with gil:
  *                     raise MemoryError
@@ -1076,8 +1076,8 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
  * 
  *     def __cinit__(self):
  *         with nogil:             # <<<<<<<<<<<<<<
- *             self._stat = <libssh2_struct_stat *>malloc(
- *                 sizeof(libssh2_struct_stat))
+ *             self._stat = <struct_stat *>malloc(
+ *                 sizeof(struct_stat))
  */
       /*finally:*/ {
         /*normal exit:*/{
@@ -1103,7 +1103,7 @@ static int __pyx_pf_4ssh2_8statinfo_8StatInfo___cinit__(struct __pyx_obj_4ssh2_8
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         with nogil:
- *             self._stat = <libssh2_struct_stat *>malloc(
+ *             self._stat = <struct_stat *>malloc(
  */
 
   /* function exit code */
@@ -1256,7 +1256,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_mode___get__(struct __py
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_long(__pyx_v_self->_stat->st_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_mode_t(__pyx_v_self->_stat->st_mode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1556,7 +1556,7 @@ static PyObject *__pyx_pf_4ssh2_8statinfo_8StatInfo_7st_size___get__(struct __py
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_libssh2_uint64_t(__pyx_v_self->_stat->st_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_off_t(__pyx_v_self->_stat->st_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2953,24 +2953,24 @@ bad:
 }
 
 /* CIntToPy */
-  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_long(unsigned long value) {
-    const unsigned long neg_one = (unsigned long) -1, const_zero = (unsigned long) 0;
+  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_mode_t(mode_t value) {
+    const mode_t neg_one = (mode_t) -1, const_zero = (mode_t) 0;
     const int is_unsigned = neg_one > const_zero;
     if (is_unsigned) {
-        if (sizeof(unsigned long) < sizeof(long)) {
+        if (sizeof(mode_t) < sizeof(long)) {
             return PyInt_FromLong((long) value);
-        } else if (sizeof(unsigned long) <= sizeof(unsigned long)) {
+        } else if (sizeof(mode_t) <= sizeof(unsigned long)) {
             return PyLong_FromUnsignedLong((unsigned long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(unsigned long) <= sizeof(unsigned PY_LONG_LONG)) {
+        } else if (sizeof(mode_t) <= sizeof(unsigned PY_LONG_LONG)) {
             return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
 #endif
         }
     } else {
-        if (sizeof(unsigned long) <= sizeof(long)) {
+        if (sizeof(mode_t) <= sizeof(long)) {
             return PyInt_FromLong((long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(unsigned long) <= sizeof(PY_LONG_LONG)) {
+        } else if (sizeof(mode_t) <= sizeof(PY_LONG_LONG)) {
             return PyLong_FromLongLong((PY_LONG_LONG) value);
 #endif
         }
@@ -2978,7 +2978,7 @@ bad:
     {
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(unsigned long),
+        return _PyLong_FromByteArray(bytes, sizeof(mode_t),
                                      little, !is_unsigned);
     }
 }
@@ -3108,24 +3108,24 @@ bad:
 }
 
 /* CIntToPy */
-  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_libssh2_uint64_t(libssh2_uint64_t value) {
-    const libssh2_uint64_t neg_one = (libssh2_uint64_t) -1, const_zero = (libssh2_uint64_t) 0;
+  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_off_t(off_t value) {
+    const off_t neg_one = (off_t) -1, const_zero = (off_t) 0;
     const int is_unsigned = neg_one > const_zero;
     if (is_unsigned) {
-        if (sizeof(libssh2_uint64_t) < sizeof(long)) {
+        if (sizeof(off_t) < sizeof(long)) {
             return PyInt_FromLong((long) value);
-        } else if (sizeof(libssh2_uint64_t) <= sizeof(unsigned long)) {
+        } else if (sizeof(off_t) <= sizeof(unsigned long)) {
             return PyLong_FromUnsignedLong((unsigned long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(libssh2_uint64_t) <= sizeof(unsigned PY_LONG_LONG)) {
+        } else if (sizeof(off_t) <= sizeof(unsigned PY_LONG_LONG)) {
             return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
 #endif
         }
     } else {
-        if (sizeof(libssh2_uint64_t) <= sizeof(long)) {
+        if (sizeof(off_t) <= sizeof(long)) {
             return PyInt_FromLong((long) value);
 #ifdef HAVE_LONG_LONG
-        } else if (sizeof(libssh2_uint64_t) <= sizeof(PY_LONG_LONG)) {
+        } else if (sizeof(off_t) <= sizeof(PY_LONG_LONG)) {
             return PyLong_FromLongLong((PY_LONG_LONG) value);
 #endif
         }
@@ -3133,7 +3133,7 @@ bad:
     {
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(libssh2_uint64_t),
+        return _PyLong_FromByteArray(bytes, sizeof(off_t),
                                      little, !is_unsigned);
     }
 }

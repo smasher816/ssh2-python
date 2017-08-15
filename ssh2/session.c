@@ -472,6 +472,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <stddef.h>
 #include <time.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include "libssh2.h"
 #include <string.h>
 #include <stdio.h>
@@ -898,16 +899,16 @@ struct __pyx_obj_4ssh2_4sftp_SFTP {
 };
 
 
-/* "statinfo.pxd":4
+/* "statinfo.pxd":20
  * 
  * 
  * cdef class StatInfo:             # <<<<<<<<<<<<<<
  *     """Representation of stat structure - older version"""
- *     cdef libssh2_struct_stat* _stat
+ *     cdef struct_stat* _stat
  */
 struct __pyx_obj_4ssh2_8statinfo_StatInfo {
   PyObject_HEAD
-  libssh2_struct_stat *_stat;
+  struct stat *_stat;
 };
 
 
@@ -1180,6 +1181,8 @@ static LIBSSH2_AGENT *__pyx_f_4ssh2_7session_7Session_init_connect_agent(struct 
 /* Module declarations from 'libc.time' */
 
 /* Module declarations from 'posix.types' */
+
+/* Module declarations from 'ssh2.c_stat' */
 
 /* Module declarations from 'ssh2.c_ssh2' */
 
@@ -7665,7 +7668,7 @@ PyMODINIT_FUNC PyInit_session(void)
   __pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall = __Pyx_ImportType("ssh2.exceptions", "SFTPBufferTooSmall", sizeof(struct __pyx_obj_4ssh2_10exceptions_SFTPBufferTooSmall), 1); if (unlikely(!__pyx_ptype_4ssh2_10exceptions_SFTPBufferTooSmall)) __PYX_ERR(7, 58, __pyx_L1_error)
   __pyx_ptype_4ssh2_8listener_Listener = __Pyx_ImportType("ssh2.listener", "Listener", sizeof(struct __pyx_obj_4ssh2_8listener_Listener), 1); if (unlikely(!__pyx_ptype_4ssh2_8listener_Listener)) __PYX_ERR(8, 24, __pyx_L1_error)
   __pyx_ptype_4ssh2_4sftp_SFTP = __Pyx_ImportType("ssh2.sftp", "SFTP", sizeof(struct __pyx_obj_4ssh2_4sftp_SFTP), 1); if (unlikely(!__pyx_ptype_4ssh2_4sftp_SFTP)) __PYX_ERR(9, 26, __pyx_L1_error)
-  __pyx_ptype_4ssh2_8statinfo_StatInfo = __Pyx_ImportType("ssh2.statinfo", "StatInfo", sizeof(struct __pyx_obj_4ssh2_8statinfo_StatInfo), 1); if (unlikely(!__pyx_ptype_4ssh2_8statinfo_StatInfo)) __PYX_ERR(10, 4, __pyx_L1_error)
+  __pyx_ptype_4ssh2_8statinfo_StatInfo = __Pyx_ImportType("ssh2.statinfo", "StatInfo", sizeof(struct __pyx_obj_4ssh2_8statinfo_StatInfo), 1); if (unlikely(!__pyx_ptype_4ssh2_8statinfo_StatInfo)) __PYX_ERR(10, 20, __pyx_L1_error)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   __pyx_t_1 = __Pyx_ImportModule("ssh2.agent"); if (!__pyx_t_1) __PYX_ERR(0, 1, __pyx_L1_error)
