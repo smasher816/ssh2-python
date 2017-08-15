@@ -60,13 +60,14 @@ cdef class StatInfo:
     def st_size(self):
         return self._stat.st_size
 
-    @property
-    def st_blksize(self):
-        return self._stat.st_blksize
+    IF UNAME_SYSNAME != "Windows":
+        @property
+        def st_blksize(self):
+            return self._stat.st_blksize
 
-    @property
-    def st_blocks(self):
-        return self._stat.st_blocks
+        @property
+        def st_blocks(self):
+            return self._stat.st_blocks
 
     @property
     def st_atime(self):
