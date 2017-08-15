@@ -24,8 +24,11 @@ else:
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
 _libs = ['ssh2'] if platform.system() != 'Windows' else [
-    'libeay32', 'ssleay32', 'Ws2_32', 'libssh2', 'user32']
-
+    # 'libeay32', 'ssleay32',
+    'Ws2_32', 'libssh2', 'user32', 'libpython']
+_lib_dirs = ["src/src", "src"]
+# if platform.system() == 'Windows':
+#     _lib_dirs.append("C:/OpenSSL-Win64/lib/VC/")
 # _comp_args = ["-ggdb"]
 _comp_args = ["-O3"] if platform.system() != 'Windows' else None
 _embedded_lib = bool(os.environ.get('EMBEDDED_LIB'))
@@ -46,8 +49,7 @@ extensions = [
               sources=[sources[i]],
               include_dirs=["libssh2/include"],
               libraries=_libs,
-              library_dirs=["src/src"],
-              runtime_library_dirs=["$ORIGIN/_libssh2"],
+              library_dirs=_lib_dirs,
               extra_compile_args=_comp_args,
               **cython_args
               # For conditional compilation

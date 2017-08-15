@@ -10,17 +10,23 @@ environment:
       CONDA_PY: "27"
       PY_CONDITION: "python >=2.7,<3"
       CONDA_INSTALL_LOCN: "C:\\Miniconda-x64"
-      PYTHON: "C:\\Miniconda-x64"
+      PYTHON: "C:\\Python27_64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
     - TARGET_ARCH: "x64"
       CONDA_PY: "35"
       PY_CONDITION: "python >=3.5,<3.6"
       CONDA_INSTALL_LOCN: "C:\\Miniconda35-x64"
-      PYTHON: "C:\\Miniconda35-x64"
+      PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.x"
+      PYTHON_ARCH: "64"
     - TARGET_ARCH: "x64"
       CONDA_PY: "36"
       PY_CONDITION: "python >=3.6"
       CONDA_INSTALL_LOCN: "C:\\Miniconda36-x64"
-      PYTHON: "C:\\Miniconda36-x64"
+      PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6.x"
+      PYTHON_ARCH: "64"
 
     # Pre-installed Python versions, which Appveyor may upgrade to
     # a later point release.
@@ -63,6 +69,8 @@ environment:
   # - powershell .\\continuous-integration\\appveyor\\install.ps1
   # - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
+matrix:
+  fast_finish: true
 
 cache:
   - "%TMP%\\py\\"
@@ -77,25 +85,36 @@ install:
   # - "%PYEXE% -c \"import glob; print(glob.glob('dist/*whl')[0])\" > whl.txt"
   # - set /p PYWHL=<whl.txt
   # - pip install %PYWHL%
-  - cmd: set CONDA_NPY=19
 
-  # Remove cygwin (and therefore the git that comes with it).
-  - cmd: rmdir C:\cygwin /s /q
 
-  # Use the pre-installed Miniconda for the desired arch
-  - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
-  - cmd: conda config --add channels conda-forge
-  - cmd: conda config --set show_channel_urls true
-  - cmd: conda update --yes --quiet conda
+  #### Conda package build and test
+  # - cmd: set CONDA_NPY=19
 
-  - cmd: conda install --yes --quiet conda-build-all
-  - cmd: conda install --yes --quiet conda-forge-build-setup
-  - cmd: run_conda_forge_build_setup
+  # # Remove cygwin (and therefore the git that comes with it).
+  # # - cmd: rmdir C:\cygwin /s /q
+
+  # # Use the pre-installed Miniconda for the desired arch
+  # - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
+  # - cmd: conda config --add channels conda-forge
+  # - cmd: conda config --set show_channel_urls true
+  # - cmd: conda update --yes --quiet conda
+
+  # - cmd: conda install --yes --quiet conda-build-all
+  # - cmd: conda install --yes --quiet conda-forge-build-setup
+  # - cmd: run_conda_forge_build_setup
+  #### End conda package
+
+  - SET PATH=%PYTHON%;%PYTHON%\Scripts;%PYTHON%\Library\bin;%PATH%
+  - pip install -U setuptools wheel
+  - "%CMD_IN_ENV% pip install cython"
+  - git submodule update --init --recursive
 
 build_script:
-  - conda build conda-recipe
+  # - conda build conda-recipe
   # - "%CMD_IN_ENV% python setup.py bdist_wheel"
-  - python setup.py bdist_wheel
+  - "%CMD_IN_ENV% ci/appveyor/build_ssh2.bat"
+  - rm -f ssh2/*.c
+  - "%CMD_IN_ENV% python setup.py bdist_wheel"
   - ls dist/*
 
 test_script:
