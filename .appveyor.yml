@@ -1,23 +1,26 @@
 environment:
-  # global:
+  global:
     # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
     # /E:ON and /V:ON options are not enabled in the batch script intepreter
     # See: http://stackoverflow.com/a/13751649/163740
-    # CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\continuous-integration\\appveyor\\run_with_env.cmd"
-  PYTHONIOENCODING: "UTF-8"
+    CMD_IN_ENV: "cmd /E:ON /V:ON /C %APPVEYOR_BUILD_FOLDER%\\ci\\appveyor\\run_with_env.cmd"
+    PYTHONIOENCODING: "UTF-8"
   matrix:
     - TARGET_ARCH: "x64"
       CONDA_PY: "27"
       PY_CONDITION: "python >=2.7,<3"
       CONDA_INSTALL_LOCN: "C:\\Miniconda-x64"
+      PYTHON: "C:\\Miniconda-x64"
     - TARGET_ARCH: "x64"
       CONDA_PY: "35"
       PY_CONDITION: "python >=3.5,<3.6"
       CONDA_INSTALL_LOCN: "C:\\Miniconda35-x64"
+      PYTHON: "C:\\Miniconda35-x64"
     - TARGET_ARCH: "x64"
       CONDA_PY: "36"
       PY_CONDITION: "python >=3.6"
       CONDA_INSTALL_LOCN: "C:\\Miniconda36-x64"
+      PYTHON: "C:\\Miniconda36-x64"
 
     # Pre-installed Python versions, which Appveyor may upgrade to
     # a later point release.
@@ -64,7 +67,6 @@ environment:
 cache:
   - "%TMP%\\py\\"
 
-build: false
 install:
   # Build wheel
   # - "%PYEXE% setup.py install"
@@ -90,14 +92,19 @@ install:
   - cmd: conda install --yes --quiet conda-forge-build-setup
   - cmd: run_conda_forge_build_setup
 
-test_script:
+build_script:
   - conda build conda-recipe
+  # - "%CMD_IN_ENV% python setup.py bdist_wheel"
+  - python setup.py bdist_wheel
+  - ls dist/*
+
+test_script:
   - cmd: mkdir conda_packages
   # Uncomment the following two lines to make any conda packages created
   # available as build artifacts in AppVeyor
   # - cmd: 'copy /Y C:\Miniconda\conda-bld\win-32\*.bz2 conda_packages || cmd /c "exit /b 0"'
-  - cmd: 'copy /Y C:\Miniconda-x64\conda-bld\win-64\*.bz2 conda_packages || cmd /c "exit /b 0"'
-  # - python continuous-integration\move-conda-package.py conda-recipe
+  - cmd: 'copy /Y C:\blk\win-64\*.bz2 conda_packages || cmd /c "exit /b 0"'
+  # - python ci\move-conda-package.py conda-recipe
   # Run the project tests
   # - "%PYEXE% setup.py nosetests"
   # - "%PYEXE% -c 'import sys; sys.version_info >= (3,) and sys.exit(1)' || eval \"2to3 -nw embedded_server\\*.py && 2to3 tests\\*.py -o tests3 -nw && cp tests\\test_client_private_key* tests3\\ && %PYEXE% setup.py nosetests -w tests3\\""
@@ -118,6 +125,7 @@ artifacts:
   # Archive the generated wheel package in the ci.appveyor.com build report.
   - path: '*.tar.bz2'
   - path: 'conda_packages\*.bz2'
+  - path: 'dist\*.whl'
 
 #on_success:
 #  - TODO: upload the content of dist/*.whl to a public wheelhouse
