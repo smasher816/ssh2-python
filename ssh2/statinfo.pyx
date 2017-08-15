@@ -32,35 +32,35 @@ cdef class StatInfo:
     def __dealloc__(self):
         free(self._stat)
 
-    @property
-    def st_ino(self):
-        return self._stat.st_ino
-
-    @property
-    def st_mode(self):
-        return self._stat.st_mode
-
-    @property
-    def st_nlink(self):
-        return self._stat.st_nlink
-
-    @property
-    def st_uid(self):
-        return self._stat.st_uid
-
-    @property
-    def st_gid(self):
-        return self._stat.st_gid
-
-    @property
-    def st_rdev(self):
-        return self._stat.st_rdev
-
-    @property
-    def st_size(self):
-        return self._stat.st_size
-
     IF UNAME_SYSNAME != "Windows":
+        @property
+        def st_ino(self):
+            return self._stat.st_ino
+
+        @property
+        def st_mode(self):
+            return self._stat.st_mode
+
+        @property
+        def st_nlink(self):
+            return self._stat.st_nlink
+
+        @property
+        def st_uid(self):
+            return self._stat.st_uid
+
+        @property
+        def st_gid(self):
+            return self._stat.st_gid
+
+        @property
+        def st_rdev(self):
+            return self._stat.st_rdev
+
+        @property
+        def st_size(self):
+            return self._stat.st_size
+
         @property
         def st_blksize(self):
             return self._stat.st_blksize
@@ -69,14 +69,14 @@ cdef class StatInfo:
         def st_blocks(self):
             return self._stat.st_blocks
 
-    @property
-    def st_atime(self):
-        return self._stat.st_atime
+        @property
+        def st_atime(self):
+            return self._stat.st_atime
 
-    @property
-    def st_mtime(self):
-        return self._stat.st_mtime
+        @property
+        def st_mtime(self):
+            return self._stat.st_mtime
 
-    @property
-    def st_ctime(self):
-        return self._stat.st_ctime
+        @property
+        def st_ctime(self):
+            return self._stat.st_ctime

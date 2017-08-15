@@ -22,13 +22,8 @@ from c_stat cimport struct_stat
 
 
 cdef extern from "libssh2.h" nogil:
-    IF UNAME_SYSNAME == "Windows":
-        ctypedef __int64 libssh2_int64_t
-        ctypedef SSIZE_T ssize_t
-        ctypedef SOCKET libssh2_socket_t
-    ELSE:
-        ctypedef long long libssh2_int64_t
-        ctypedef int libssh2_socket_t
+    ctypedef long long libssh2_int64_t
+    ctypedef int libssh2_socket_t
     ctypedef unsigned long long libssh2_uint64_t
     int libssh2_init(int flags)
     enum:
