@@ -24,7 +24,7 @@ else:
 ext = 'pyx' if USING_CYTHON else 'c'
 sources = glob('ssh2/*.%s' % (ext,))
 _libs = ['ssh2'] if platform.system() != 'Windows' else [
-    'libeay32', 'ssleay32', 'Ws2_32', 'libssh2']
+    'libeay32', 'ssleay32', 'Ws2_32', 'libssh2', 'user32']
 
 # _comp_args = ["-ggdb"]
 _comp_args = ["-O3"] if platform.system != 'Windows' else None
@@ -38,6 +38,8 @@ cython_args = {
     'cython_directives': cython_directives,
     'cython_compile_time_env': {'EMBEDDED_LIB': _embedded_lib}} \
     if USING_CYTHON else {}
+
+print("Linking with %s and compiler arguments %s" % (_libs, _comp_args))
 
 extensions = [
     Extension(sources[i].split('.')[0].replace(os.path.sep, '.'),
